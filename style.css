@@ -1,0 +1,173 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #bfe3f0;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+}
+
+#app canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#hud {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  max-width: 300px;
+  padding: 14px 16px;
+  background: rgba(15, 23, 20, 0.62);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #eafff0;
+  pointer-events: none;
+  user-select: none;
+}
+
+#hud h1 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.readout {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.readout .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.readout .label {
+  color: rgba(234, 255, 240, 0.65);
+}
+
+.readout .value {
+  font-weight: 600;
+}
+
+.readout .value.state-idle {
+  color: #6fe08a;
+}
+
+.readout .value.state-irrigating {
+  color: #ff8a6b;
+}
+
+.readout .value.state-rain {
+  color: #6fc7ff;
+}
+
+.readout .value.state-empty {
+  color: #ffcf6b;
+}
+
+.instructions {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: rgba(234, 255, 240, 0.75);
+}
+
+#force-dry-btn,
+#trigger-rain-btn,
+#toggle-night-btn {
+  pointer-events: auto;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: #ffe3da;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+#force-dry-btn {
+  background: rgba(255, 138, 107, 0.18);
+}
+
+#force-dry-btn:hover {
+  background: rgba(255, 138, 107, 0.32);
+}
+
+#trigger-rain-btn {
+  margin-top: 6px;
+  background: rgba(111, 199, 255, 0.18);
+  color: #dcf1ff;
+}
+
+#trigger-rain-btn:hover {
+  background: rgba(111, 199, 255, 0.32);
+}
+
+#toggle-night-btn {
+  margin-top: 6px;
+  background: rgba(180, 160, 255, 0.18);
+  color: #ebe4ff;
+}
+
+#toggle-night-btn:hover {
+  background: rgba(180, 160, 255, 0.32);
+}
+
+#force-dry-btn:active,
+#trigger-rain-btn:active,
+#toggle-night-btn:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 480px) {
+  #hud {
+    max-width: calc(100% - 32px);
+  }
+}
+
+#label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -140%);
+  padding: 5px 10px;
+  background: rgba(12, 16, 14, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 7px;
+  color: #f2fff5;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  z-index: 5;
+}
+
+#label.visible {
+  opacity: 1;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Smart Irrigation System — 3D Visualization</title>
+<link rel="stylesheet" href="style.css" />
+
+<!--
+  No-bundler Three.js quick start (per threejs.org "Installation" docs):
+  an import map lets bare "three" / "three/addons/..." specifiers resolve
+  straight from a CDN, so this whole project runs as static files with
+  zero npm/build step. Version is pinned (not @latest) so it doesn't
+  change out from under a presentation.
+  Fallback CDN if jsdelivr is ever unreachable: swap the URLs below for
+  the equivalent unpkg.com/three@0.160.0/... paths.
+-->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="label"></div>
+
+  <div id="hud">
+    <h1>Smart Irrigation System</h1>
+    <div class="readout">
+      <div class="row"><span class="label">Moisture</span><span id="hud-moisture" class="value">--%</span></div>
+      <div class="row"><span class="label">Threshold</span><span id="hud-threshold" class="value">--%</span></div>
+      <div class="row"><span class="label">Temp</span><span id="hud-temp" class="value">--&deg;C</span></div>
+      <div class="row"><span class="label">Rain</span><span id="hud-rain" class="value">--</span></div>
+      <div class="row"><span class="label">Tank</span><span id="hud-tank" class="value">--%</span></div>
+      <div class="row"><span class="label">State</span><span id="hud-state" class="value state-idle">IDLE</span></div>
+    </div>
+    <p class="instructions">
+      Drag the dial on the control box to change the moisture threshold &middot;
+      click a soil bed (or the button below) to simulate dry soil &middot;
+      drag to orbit, scroll to zoom.
+    </p>
+    <button id="force-dry-btn" type="button">Simulate Dry Soil</button>
+    <button id="trigger-rain-btn" type="button">Trigger Rain</button>
+    <button id="toggle-night-btn" type="button">Toggle Night</button>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
